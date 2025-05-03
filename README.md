@@ -20,14 +20,6 @@ It models a **random surfer** who clicks links at random and occasionally jumps 
 Below is the formal PageRank formula used to compute the rank of a page `v`:
 
 ![Formula](formula.png)
-
-- **d**: Jump (damping) factor (commonly 0.85)
-- **N**: Total number of webpages
-- **uᵢ**: Pages linking to `v`
-- **uⱼ**: Pages without outlinks (dangling nodes)
-- **Rank(uᵢ)**: The rank of page uᵢ in the previous iteration
-- **outlinks(uᵢ)**: Number of outgoing links from uᵢ
-
 ---
 
 ## 🧠 Explanation
