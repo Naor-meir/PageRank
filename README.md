@@ -1,7 +1,8 @@
 # 🚀 Parallel PageRank Implementation (Part III)
 
 This project is a **parallel C++ implementation of the PageRank algorithm**, developed as part of the *Parallel Programming* course assignment (Part III).  
-The implementation features **custom-built Graph** and **ThreadPool** structures written from scratch, without using any templates or external libraries.
+The implementation features **custom-built Graph** and a **thread-based PageRank engine using C++ standard threads (std::thread)**.  
+No external libraries or given templates were used — the thread pool and graph structure were written manually.
 
 ---
 
@@ -27,17 +28,14 @@ Below is the formal PageRank formula used to compute the rank of a page `v`:
 - **Rank(uᵢ)**: The rank of page uᵢ in the previous iteration
 - **outlinks(uᵢ)**: Number of outgoing links from uᵢ
 
-This formula reflects the probability that a random user lands on page `v`.
-
 ---
 
 ## 🧠 Explanation
 
-![Explanation](explanation1.png)
+In simple words, **PageRank** gives each web page a “score” based on how many and how good are the links pointing to it.  
+The higher the score, the more “important” the page is assumed to be.
 
-In simple words, PageRank gives each web page a "score" based on how many and how good are the links pointing to it. The higher the score, the more "important" the page is assumed to be.
-
-> Note: Google uses many more signals today, but PageRank was the foundational idea.
+> Note: While modern search engines use many more signals today, PageRank was the foundational idea used by Google in its early search algorithm.
 
 ---
 
@@ -53,7 +51,18 @@ The graph below shows a sample PageRank result. Node size and percentage reflect
 
 The following pseudocode represents the classical sequential implementation of PageRank:
 
-![Sequential Pseudocode](sequential_pseudocode.png)
+```text
+PageRank(G, n):
+  d ← 0.15
+  N ← number of nodes
+  for each node v:
+    Rank[v] ← 1/N
+
+  repeat n times:
+    for each node v:
+      Rank[v] ← d/N + (1-d) * ( Σ[Rank(uᵢ)/outlinks(uᵢ)] + Σ[Rank(uⱼ)/N] )
+  return Rank
+```
 
 ---
 
@@ -125,7 +134,7 @@ make clean # Remove build artifacts
 
 ## ✅ Features
 
-- Custom **parallel PageRank** using C++17 threads
+- Custom **parallel PageRank** using C++17 threads (`std::thread`)
 - Implements both **Graph** and **ThreadPool** manually (from scratch)
 - Handles **dangling nodes** by redistributing weight across all pages
 - Modular structure, suitable for expansion
