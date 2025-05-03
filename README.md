@@ -1,6 +1,6 @@
-# 🚀 Parallel PageRank Implementation (Part III)
+# 🚀 Parallel PageRank Implementation 
 
-This project is a **parallel C++ implementation of the PageRank algorithm**, developed as part of the *Parallel Programming* course assignment (Part III).  
+This project is a **parallel C++ implementation of the PageRank algorithm**, developed as part of the *Parallel Programming* course assignment .  
 The implementation features **custom-built Graph** and a **thread-based PageRank engine using C++ standard threads (std::thread)**.  
 No external libraries or given templates were used — the thread pool and graph structure were written manually.
 
