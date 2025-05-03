@@ -31,16 +31,6 @@ The higher the score, the more “important” the page is assumed to be.
 
 ---
 
-## 🧪 Visual Example
-
-The graph below shows a sample PageRank result. Node size and percentage reflect the calculated importance:
-
-![Example Graph](example_graph.png)
-
-
-
----
-
 ## ⚡ Parallel Pseudocode
 
 The following pseudocode outlines how the PageRank algorithm was parallelized using a custom thread pool:
