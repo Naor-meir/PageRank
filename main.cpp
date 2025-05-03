@@ -1,27 +1,27 @@
 #include "graph.hpp"
 #include "pageRank.hpp"
 #include <iostream>
-#include <iomanip> // std::setprecision
-#include <cstdlib> // malloc/free
+#include <iomanip> // for std::setprecision
+#include <cstdlib> // for malloc/free
 
 int main()
 {
-    // מספר קודקודים
+    // Number of nodes in the graph
     std::size_t N = 4;
 
-    // 1. יצירת גרף
+    // 1. Create the graph
     Graph *graph = createGraph(N);
     if (!graph)
         return 1;
 
-    // 2. הוספת קשתות – intentionally sparse, includes dangling nodes
-    // גרף עם חלק מהצמתים שאין להם קשתות יוצאות
+    // 2. Add edges – intentionally sparse, includes dangling nodes
+    // A graph where some nodes have no outgoing edges
     addEdge(graph, 0, 1);
     addEdge(graph, 1, 2);
     addEdge(graph, 0, 2);
     addEdge(graph, 2, 3);
 
-    // 3. אתחול ranks – אחיד
+    // 3. Initialize PageRank values – uniform distribution
     float *ranks = (float *)malloc(N * sizeof(float));
     if (!ranks)
     {
@@ -33,10 +33,10 @@ int main()
         ranks[i] = 1.0f / N;
     }
 
-    // 4. הרצת PageRank
+    // 4. Run the PageRank algorithm
     PageRank(graph, 5, ranks);
 
-    // 5. הדפסת תוצאה
+    // 5. Print the final PageRank values
     std::cout << "Final PageRank values after 10 iterations:\n";
     std::cout << std::fixed << std::setprecision(6);
     for (std::size_t i = 0; i < N; ++i)
@@ -44,9 +44,9 @@ int main()
         std::cout << "Node " << i << ": " << ranks[i] << '\n';
     }
 
-    // 6. ניקוי זיכרון
+    // 6. Free allocated memory
     free(ranks);
-    free(graph); // אם אתה ב־malloc
+    free(graph); // only if created using malloc
 
     return 0;
 }
