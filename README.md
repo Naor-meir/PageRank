@@ -45,24 +45,7 @@ The graph below shows a sample PageRank result. Node size and percentage reflect
 
 ![Example Graph](example_graph.png)
 
----
 
-## 📜 Sequential Pseudocode
-
-The following pseudocode represents the classical sequential implementation of PageRank:
-
-```text
-PageRank(G, n):
-  d ← 0.15
-  N ← number of nodes
-  for each node v:
-    Rank[v] ← 1/N
-
-  repeat n times:
-    for each node v:
-      Rank[v] ← d/N + (1-d) * ( Σ[Rank(uᵢ)/outlinks(uᵢ)] + Σ[Rank(uⱼ)/N] )
-  return Rank
-```
 
 ---
 
